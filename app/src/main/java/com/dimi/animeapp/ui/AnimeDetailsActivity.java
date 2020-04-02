@@ -26,14 +26,12 @@ public class AnimeDetailsActivity extends AppCompatActivity implements AnimeChar
 
         Intent intent = getIntent();
         Anime anime = intent.getParcelableExtra("Anime");
-        Log.d("SVE", "AllCharactersClicked2: " + anime.getMal_id());
 
         activityAnimeDetailsBinding.setAnimeChar(anime);
     }
 
     @Override
     public void AllCharactersClicked(Anime anime) {
-        Log.d("SVE", "AllCharactersClicked: " + anime.getMal_id());
         Intent intent = new Intent(AnimeDetailsActivity.this, CharacterListActivity.class);
         intent.putExtra("Anime", anime);
         startActivity(intent);

@@ -83,7 +83,7 @@ public class Anime implements Parcelable {
     ////////////////////////////////////////////////
 
     //parcel part
-    public Anime(Parcel in){
+    public Anime( Parcel in ){
         String[] data= new String[5];
 
         in.readStringArray(data);

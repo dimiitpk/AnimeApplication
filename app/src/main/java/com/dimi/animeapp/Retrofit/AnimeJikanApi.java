@@ -1,6 +1,7 @@
 package com.dimi.animeapp.Retrofit;
 
 import com.dimi.animeapp.model.AnimeAndMore;
+import com.dimi.animeapp.model.Character;
 import com.dimi.animeapp.model.CharactersAndMore;
 
 import retrofit2.Call;
@@ -9,6 +10,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface AnimeJikanApi {
+
+    @GET( "character/{id}")
+    Call<Character> getCharacter (
+            @Path("id") int id
+    );
 
 
     @GET("anime/{id}/characters_staff")
