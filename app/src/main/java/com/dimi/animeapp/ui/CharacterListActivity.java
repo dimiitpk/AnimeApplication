@@ -80,7 +80,7 @@ public class CharacterListActivity extends AppCompatActivity implements Characte
     public void ShareClicked(Character character1) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
+        charactersListViewModel.getIsLoading().postValue(true);
         charactersListViewModel.getCharacter(character1).observe(this, character -> {
             DialogCharacterDetailsBinding dialogCharacterDetailsBinding = DataBindingUtil.inflate(LayoutInflater.from(getApplicationContext()), R.layout.dialog_character_details, null, false);
             dialogCharacterDetailsBinding.setCharacter(character);
@@ -89,6 +89,7 @@ public class CharacterListActivity extends AppCompatActivity implements Characte
 
             AlertDialog dialog = builder.create();
             dialog.show();
+            charactersListViewModel.getIsLoading().postValue(false);
 
             ImageButton closeButton = dialogCharacterDetailsBinding.closeImageButton;
             closeButton.setOnClickListener(v -> dialog.dismiss());
