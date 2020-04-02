@@ -43,9 +43,12 @@ public class AnimeListRecyclerView extends RecyclerView.Adapter<AnimeListRecycle
         return new ViewHolder(animeListRowBinding);
     }
 
-    public AnimeListRecyclerView(Context context, List<Anime> animeList) {
-        this.context = context;
+    public void setAnimeList(List<Anime> animeList) {
         this.animeList = animeList;
+    }
+
+    public AnimeListRecyclerView(Context context) {
+        this.context = context;
     }
 
     @Override

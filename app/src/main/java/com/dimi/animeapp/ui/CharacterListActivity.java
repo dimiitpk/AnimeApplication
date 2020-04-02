@@ -51,7 +51,6 @@ public class CharacterListActivity extends AppCompatActivity implements Characte
 
         Intent intent = getIntent();
         Anime anime = intent.getParcelableExtra("Anime");
-        Log.d("SVE", "AllCharactersClicked1: " + anime.getMal_id());
         setTitle(anime.getTitle());
         charactersListViewModel = new ViewModelProvider(this).get(CharactersListViewModel.class);
 

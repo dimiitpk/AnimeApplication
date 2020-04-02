@@ -1,6 +1,7 @@
 package com.dimi.animeapp.vm;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.dimi.animeapp.model.Anime;
 

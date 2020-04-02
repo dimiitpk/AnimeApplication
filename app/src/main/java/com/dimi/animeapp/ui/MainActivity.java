@@ -39,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-
         loadingIndicator = activityMainBinding.acMainLoadingIndicator;
 
-        searchAnime = findViewById(R.id.main_search_edit_text);
-        searchButton = findViewById(R.id.main_search_button);
+        searchAnime = activityMainBinding.mainSearchEditText;
+        searchButton = activityMainBinding.mainSearchButton;
 
         animeListViewModel = new ViewModelProvider(this ).get(AnimeListViewModel.class);
 
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 searchAnimeName = searchAnime.getText().toString().trim();
 
             animeListViewModel.getAnimeList(searchAnimeName);
-            animeListRecyclerView.notifyDataSetChanged();
         });
 
         animeListViewModel.getIsLoading().observe(this, (Boolean isLoading) -> {
@@ -63,15 +61,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         animeListViewModel.getAnimeList(searchAnimeName).observe(this, (List<Anime> animList) -> {
+            Log.d("SVE", "onCreateSEAC1: ");
             animeListViewModel.getIsLoading().postValue(false);
-            initRecyclerView( animList );
+            if( animeListRecyclerView == null) initRecyclerView( animList );
+            else {
+                animeListRecyclerView.setAnimeList(animList);
+                animeListRecyclerView.notifyDataSetChanged();
+            }
         });
     }
 
     private void initRecyclerView( List<Anime> animList ) {
         Log.d("AnimINIT", "initRecyclerView: " + animList.toString());
-
-        animeListRecyclerView = new AnimeListRecyclerView( this, animList );
+        Log.d("SVE", "onCreateSEAC2: ");
+        animeListRecyclerView = new AnimeListRecyclerView( this );
+        animeListRecyclerView.setAnimeList(animList);
 
         recyclerView = activityMainBinding.acMainRecyclerView;
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
