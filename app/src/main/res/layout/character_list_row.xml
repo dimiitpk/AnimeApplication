@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/character_list_image"
+                char_avatar="@{character.image_url}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
+
+            <TextView
+                android:id="@+id/character_list_textview"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorAccent"
+                android:elevation="10dp"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="@{character.name}"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/character_list_image" />
+
+            <TextView
+                android:id="@+id/role_character_list_textview"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/holo_orange_light"
+                android:elevation="10dp"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="@string/main_role"
+                android:textColor="@android:color/white"
+                android:visibility="@{character.isRoleMain(character.role) ? View.VISIBLE : View.INVISIBLE}"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="@+id/character_list_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="character"
+            type="com.dimi.animeapp.model.Character" />
+    </data>
+</layout>

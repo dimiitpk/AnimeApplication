@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AnimeApp</string>
+    <string name="enter_name_of_anime">Enter anime name</string>
+    <string name="all_characters">All characters</string>
+    <string name="main_role">Main Role</string>
+    <string name="todo">TODO</string>
+</resources>

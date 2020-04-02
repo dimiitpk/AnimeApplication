@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="myCharAdapter"
+            type="com.dimi.animeapp.adapter.CharacterListRecyclerView" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp"
+        tools:context=".ui.CharacterListActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ac_char_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            adapter="@{myCharAdapter}"
+            android:padding="2dp"
+            tools:listitem="@layout/character_list_row" />
+
+        <ProgressBar
+            android:id="@+id/ac_character_loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+</layout>
