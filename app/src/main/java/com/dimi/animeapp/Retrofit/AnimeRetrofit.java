@@ -2,16 +2,17 @@ package com.dimi.animeapp.Retrofit;
 
 import android.util.Log;
 
-import com.dimi.animeapp.model.Anime;
-import com.dimi.animeapp.model.AnimeAndMore;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.io.IOException;
+import java.net.ConnectException;
 
+import androidx.annotation.NonNull;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -26,6 +27,8 @@ public class AnimeRetrofit {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)

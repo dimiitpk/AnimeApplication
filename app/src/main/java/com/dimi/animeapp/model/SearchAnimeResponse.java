@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class AnimeAndMore {
+public class SearchAnimeResponse {
 
     @SerializedName("request_hash")
     private String request_hash;

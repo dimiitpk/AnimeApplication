@@ -3,12 +3,13 @@ package com.dimi.animeapp.vm;
 import android.app.Application;
 
 import com.dimi.animeapp.repository.BaseRepository;
+import com.dimi.animeapp.vm.interfaces.LoadingIndicator;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-public class BaseViewModel extends AndroidViewModel {
+public abstract class BaseViewModel extends AndroidViewModel implements LoadingIndicator {
 
     private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     private BaseRepository baseRepository;
@@ -18,7 +19,7 @@ public class BaseViewModel extends AndroidViewModel {
         baseRepository = BaseRepository.getInstance();
     }
 
-    BaseRepository getBaseRepository() {
+    public BaseRepository getBaseRepository() {
         return baseRepository;
     }
 
@@ -27,10 +28,11 @@ public class BaseViewModel extends AndroidViewModel {
         super.onCleared();
     }
 
-    void setIsLoadingToTrue() {
-        this.isLoading.setValue(true);
+    @Override
+    public void setIsLoadingToTrue() {
+        this.isLoading.postValue(true);
     }
-
+    @Override
     public MutableLiveData<Boolean> getIsLoading() {
         return isLoading;
     }

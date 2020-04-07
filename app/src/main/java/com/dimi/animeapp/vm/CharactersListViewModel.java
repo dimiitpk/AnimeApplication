@@ -24,6 +24,4 @@ public class CharactersListViewModel extends BaseViewModel {
     public LiveData<Character> getCharacter( Character character ) {
         return getBaseRepository().getCharacter( character );
     }
-
-
 }

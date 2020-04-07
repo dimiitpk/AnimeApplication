@@ -34,7 +34,6 @@ public class Character implements Parcelable {
         this.about = about;
     }
 
-
     public String getImage_url() {
         return image_url;
     }

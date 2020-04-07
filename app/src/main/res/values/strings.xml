@@ -4,4 +4,14 @@
     <string name="all_characters">All characters</string>
     <string name="main_role">Main Role</string>
     <string name="todo">TODO</string>
+    <string name="main_role_star">- main role in anime</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trailer_text">Trailer</string>
+    <string name="hide_trailer">hide trailer</string>
+    <string name="show_trailer">show trailer</string>
+    <string name="choose_a_genre_to_show">Choose a genre to show</string>
+    <string name="title_text_which">Which anime is next, hmm ?</string>
+    <string name="details">Details</string>
 </resources>

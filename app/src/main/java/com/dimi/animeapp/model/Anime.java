@@ -16,12 +16,24 @@ public class Anime implements Parcelable {
     private int mal_id;
     @SerializedName("image_url")
     private String image_url;
+    @SerializedName("trailer_url")
+    private String trailer_url;
     @SerializedName("title")
     private String title;
     @SerializedName("synopsis")
     private String synopis;
     @SerializedName("episodes")
     private int episodes;
+    @SerializedName("score")
+    private float score;
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
+    }
 
     public int getMal_id() {
         return mal_id;
@@ -33,11 +45,14 @@ public class Anime implements Parcelable {
 
     public  Anime() {}
 
-    public Anime(String image_url, String title, String synopis, int episodes) {
+    public Anime(int mal_id, String image_url, String trailer_url, String title, String synopis, int episodes, float score) {
+        this.mal_id = mal_id;
         this.image_url = image_url;
+        this.trailer_url = trailer_url;
         this.title = title;
         this.synopis = synopis;
         this.episodes = episodes;
+        this.score = score;
     }
 
     public void setImage_url(String image_url) {
@@ -72,6 +87,14 @@ public class Anime implements Parcelable {
         return episodes;
     }
 
+    public String getTrailer_url() {
+        return trailer_url;
+    }
+
+    public void setTrailer_url(String trailer_url) {
+        this.trailer_url = trailer_url;
+    }
+
     @BindingAdapter({ "avatar" })
     public static void loadImage(ImageView imageView, String imageURL) {
 
@@ -80,24 +103,30 @@ public class Anime implements Parcelable {
         Picasso.get().load(image_url_2[0]).fit().placeholder(R.drawable.default_image).into(imageView);
     }
 
+    public float formatScoreString(float scoreStars) {
+        return scoreStars/2;
+    }
+
     ////////////////////////////////////////////////
 
     //parcel part
     public Anime( Parcel in ){
-        String[] data= new String[5];
+        String[] data= new String[7];
 
         in.readStringArray(data);
         this.image_url = data[0];
-        this.title = data[1];
-        this.synopis = data[2];
-        this.episodes = Integer.parseInt(data[3]);
-        this.mal_id = Integer.parseInt(data[4]);
+        this.trailer_url = data[1];
+        this.title = data[2];
+        this.synopis = data[3];
+        this.episodes = Integer.parseInt(data[4]);
+        this.mal_id = Integer.parseInt(data[5]);
+        this.score = Float.parseFloat(data[6]);
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
-        dest.writeStringArray(new String[]{this.image_url,this.title,this.synopis,String.valueOf(this.episodes),String.valueOf(this.mal_id)});
+        dest.writeStringArray(new String[]{this.image_url,this.trailer_url,this.title,this.synopis,String.valueOf(this.episodes),String.valueOf(this.mal_id),String.valueOf(this.score)});
     }
 
     @Override
@@ -105,7 +134,7 @@ public class Anime implements Parcelable {
         return 0;
     }
 
-    public static final Parcelable.Creator<Anime> CREATOR= new Parcelable.Creator<Anime>() {
+    public static final Parcelable.Creator<Anime> CREATOR = new Parcelable.Creator<Anime>() {
 
         @Override
         public Anime createFromParcel(Parcel source) {

@@ -1,34 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="myCharAdapter"
-            type="com.dimi.animeapp.adapter.CharacterListRecyclerView" />
-    </data>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="6dp"
         tools:context=".ui.CharacterListActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ac_char_list_recycler"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView_mainRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/main_role"
+                android:elevation="16dp"
+                android:src="@android:drawable/star_big_on" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:elevation="16dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/main_role_star"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            adapter="@{myCharAdapter}"
-            android:padding="2dp"
-            tools:listitem="@layout/character_list_row" />
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="#01539C" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#2D3030" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/ac_character_loading_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:elevation="16dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@{anime.title}"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ac_char_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:elevation="1dp"
+            android:paddingStart="80dp"
+            android:paddingEnd="80dp">
+
+        </androidx.viewpager2.widget.ViewPager2>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="anime"
+            type="com.dimi.animeapp.model.Anime" />
+
+        <variable
+            name="myCharAdapter"
+            type="com.dimi.animeapp.adapter.CharacterListRecyclerView" />
+    </data>
 </layout>
